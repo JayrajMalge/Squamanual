@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="course-container">
+  <div class="course-card">
+    <img [src]="imgurl" alt="Course Image" class="course-image">
+    <div class="course-info">
+      <h2 class="course-name">{{course.name}}</h2>
+      <p class="course-description">
+        {{course.descriptionmarkup}}
+      </p>
+      <div class="course-content">
+        <h3>Course Content</h3>
+        <ul>
+          <li *ngFor="let topic of topics">{{topic.name}}</li>
+        </ul>
+      </div>
+      <div class="course-actions">
+        <button class="primary-btn" (click)="buycourse()" *ngIf="!coursestatus.enrollstatus">Enroll Now</button>
+        <button class="secondary-btn" (click)="addcourseintowishlist()" *ngIf="!coursestatus.wishliststatus && !coursestatus.enrollstatus">WishList</button>
+      </div>
+      <div class="course-actions">
+        <button class="primary-btn" *ngIf="coursestatus.wishliststatus && !coursestatus.enrollstatus" (click)="removefromwishlist()">WishListed</button>
+        <p *ngIf="coursestatus.enrollstatus">Alreay Enroll</p>
+      </div>
+      <div class="spinner" [hidden]="spinnerstatus"></div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

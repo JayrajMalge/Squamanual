@@ -1,0 +1,136 @@
+
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .dialog-box {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    max-width: 90%;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .dialog-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #333;
+  }
+  
+  .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .close-btn:hover {
+    color: #ff6b6b;
+  }
+  
+  .dialog-body {
+    text-align: center;
+  }
+  
+  .carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .arrow-btn {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.3s;
+  }
+  
+  .arrow-btn.left {
+    left: 10px;
+  }
+  
+  .arrow-btn.right {
+    right: 10px;
+  }
+  
+  .arrow-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .dialog-btn {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .dialog-btn.secondary {
+    background: #f0f0f0;
+    color: #333;
+  }
+  
+  .dialog-btn.secondary:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

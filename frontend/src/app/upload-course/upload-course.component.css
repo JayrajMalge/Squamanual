@@ -1,0 +1,245 @@
+
+
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h3, h4, h5 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Form Input Styles */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus, textarea:focus {
+    border-color: #00aaa0;
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #00aaa0;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  div {
+    margin-bottom: 20px;
+  }
+  
+  button[type="button"] {
+    background-color: #008b84;
+    margin-top: 10px;
+  }
+  
+  .remove-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .topic-section, .concept-section, .question-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+  
+  .concept-section {
+    margin-left: 15px;
+  }
+  
+  .question-section {
+    margin-left: 30px;
+  }
+  
+  h3, h4, h5 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .remove-section-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    form {
+      padding: 20px;
+    }
+  
+    input[type="text"], textarea {
+      font-size: 12px;
+    }
+  
+    button {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+  
+    .remove-btn {
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+  }
+  
+  .custom-select-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; /* Limit the max width for the dropdown */
+    margin-bottom: 20px; /* Space below the component */
+    font-family: Arial, sans-serif; /* Change the font style */
+  }
+  
+  .custom-select-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px; /* Space between the label and the select box */
+    font-weight: bold;
+  }
+  
+  .custom-select {
+    appearance: none; /* Remove default select arrow */
+    background-color: #f0f0f0; /* Light gray background */
+    border: 2px solid #00aaa0; /* Border with your primary color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside the select box */
+    font-size: 16px;
+    color: #333; /* Text color */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: border-color 0.3s ease; /* Smooth border transition */
+  }
+  
+  .custom-select:focus {
+    border-color: #009688; /* Darker shade for focus state */
+    outline: none; /* Remove default outline */
+  }
+  
+  .custom-select option {
+    background-color: #ffffff; /* White background for dropdown items */
+    color: #333;
+  }
+  
+  /* Optional styling for when hovering or interacting */
+  .custom-select:hover {
+    border-color: #008080; /* Slightly darker border on hover */
+  }
+  
+  
+  .courses{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap ;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .update{
+    text-align: center;
+    font-family: sans-serif;
+    color: #00aaa0;
+  }
+
+  .topics form{
+    border: #008080 3px solid;
+    margin-top: 10px;
+  }
+
+  .conpets form{
+    border: black 3px solid;
+  }
+
+  .questions form{
+    border: #ddd 3px solid;
+  }
+
+  .questions form button{
+    border: #ddd 3px solid;
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .questions form button:hover{
+    background-color: #333;
+    color: #008080;
+  }
+
+  .questions form label{
+    color: #333;
+  }
+
+  
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db; /* Blue color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 45.6%;
+  margin-top: 2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+h2{
+  font-size: 1.7rem;
+}
+p{
+  font-size: 1.2rem;
+}

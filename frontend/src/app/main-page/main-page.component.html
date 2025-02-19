@@ -1,0 +1,37 @@
+<div class="main" *ngIf="!fullScreenAllow.showscreen">
+    <app-header></app-header>
+    <app-carsoul-imges></app-carsoul-imges>
+    <div class="courseSection">
+      <div class="course_content">
+        <h1 id="Course_heading">Join Our Learning Platform and Accelerate Your Career!</h1>
+        <p>Our platform offers interactive learning that goes beyond just watching videos.
+          With hands-on, practical lessons and real-world projects, you’ll apply what you learn
+          immediately, building a portfolio that showcases your skills to potential employers.</p>
+      </div>
+      <div class="courses" *ngIf="!fullScreenAllow.showscreen">
+       <a *ngFor="let course of trendingcourse | slice:0:4;let i = index" href="/fullScreencourse/{{course.courseid}}"><app-course-box [course]="course"></app-course-box></a>
+      </div>
+    </div>
+    <app-adv-box></app-adv-box>
+    <div class="review_section">
+      <div class="review_heading">
+        <h3>🌟 Join Thousands of Happy Students and Kickstart Your Career! 🌟</h3>
+        <p>Don’t just take our word for it—hear from our students who have transformed their careers with our courses .
+          Enroll Now and be part of a community that’s shaping the future of tech. Your success story could be next! 🎓
+        </p>
+      </div>
+      <div class="reviews">
+        <app-review-box *ngFor="let review of reviews | slice:0:4;let i = index" [review]="review" ></app-review-box>
+      </div>
+    </div>
+    <section class="faq-section">
+      <h2 id="faqheading">We're here to answer all your question</h2>
+      <app-faq></app-faq>
+    </section>
+    <script src="index.js"></script>
+    <app-footer></app-footer>
+  </div>
+  <!--<div class="main" *ngIf="fullScreenAllow.showscreen">
+    <app-header></app-header>
+    <app-full-screen-course [course]="fullScreenAllow.coursetosee"></app-full-screen-course>
+  </div>-->

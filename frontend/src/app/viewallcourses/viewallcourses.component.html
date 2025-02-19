@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="main">
+        <input type="text" [(ngModel)]="search" placeholder="Search Course" [ngModelOptions]="{standalone : true}" (change)="searchspe()">
+        <div class="spinner" [hidden]="search.length == 0"></div>
+     <div *ngIf="!searched">
+      <div class="categories" *ngFor="let cat of catcourse" >
+         <h3>{{cat.category.name}}</h3>
+         <p>Courses In {{cat.category.name}} field</p>
+         <div class="courses">
+            <app-course-box *ngFor="let cou of cat.course" [course]="cou" ></app-course-box>
+         </div>
+       </div>
+     </div>
+   <div class="courses" *ngIf="searched">
+      <app-course-box *ngFor="let co of searchcourse" [course]="co"></app-course-box>
+   </div>
+</div>
+<app-footer></app-footer>

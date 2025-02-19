@@ -1,0 +1,26 @@
+<!--<div class="custom-card">
+    <img [src]="imgurl" alt="Card Image" class="card-image" />
+    <div class="card-content">
+      <h2 class="card-title">{{course.name}}</h2>
+      <h3 [innerHTML]="course.isfree > 1 ? course.isfree : 'Free'" class="card-description"></h3>
+      <div class="level-badge">{{course.difficulty}}</div>
+    </div>
+</div>-->
+  
+<mat-card class="course-card" (mouseenter)="onHover()" (mouseleave)="onLeave()" [@hoverAnimation]="hoverState">
+  <img mat-card-image [src]="imgurl" alt="Course Image" class="course-image" />
+
+  <mat-card-content class="course-details">
+    <div class="course-name">
+      {{ course.name.length > 13 ? course.name.substring(0, 13) + '...' : course.name }}
+    </div>
+    <div class="course-price" [ngClass]="{ 'free': course.isfree <= 1 }">
+      {{ course.isfree > 1 ? (course.isfree | currency) : 'Free' }}
+    </div>
+    <div class="course-level">
+      <mat-chip [ngClass]="getDifficultyClass(course.difficulty)">
+        <p> {{ course.difficulty }}</p>
+      </mat-chip>
+    </div>
+  </mat-card-content>
+</mat-card>

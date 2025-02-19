@@ -1,0 +1,54 @@
+<app-header></app-header>
+  <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-svg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="course-image" viewBox="0 0 512 512"><path d="M256 73.825c-100.613 0-182.18 81.562-182.18 182.17a182.18 182.18 0 0 0 364.36 0c0-100.608-81.572-182.17-182.18-182.17zm.553 268.12h-78.93c0-56.91 49.98-56.901 61.07-71.773l1.27-6.793c-15.582-7.893-26.582-26.939-26.582-49.201 0-29.33 19.081-53.122 42.619-53.122 23.532 0 42.61 23.793 42.61 53.122 0 22.078-10.802 41-26.175 49.017l1.442 7.716c12.172 14.16 60.486 15.082 60.486 71.034z" data-name="Profile Male"/></svg>
+        </div>
+        <div class="profile-details">
+          <h2 class="profile-name">{{ user.email }}</h2>
+          <p class="profile-email">{{ user.name }}</p>
+        </div>
+        <button class="edit-profile-btn" (click)="openeditprofilesetup()" *ngIf="!editprofileoption">Edit Profile</button>
+      </div>
+    
+      <div class="faqs-section">
+        <h3>User Doubts (FAQs)</h3>
+        <div *ngFor="let faq of faqs" class="faq-item">
+          <button (click)="toggleFaq(faq.faquestionid)" class="faq-question">
+            {{ faq.question }}
+          </button>
+          <div *ngIf="faq.isopen" class="faq-answer">
+            {{ faq.answer }}
+          </div>
+        </div>
+        <div class="askDout" *ngIf="user.role=='User' && !askdout">
+          <button (click)="askdoutsetup()">Ask Dout</button>
+        </div>
+        <div class="faqform" *ngIf="askdout">
+          <input type="text" [(ngModel)]="userquestion" placeholder="ask your dout">
+          <button>ASK</button>
+        </div>
+      </div>
+      <div class="logout-section">
+        <button class="logout-btn" (click)="logOut()">Log Out</button>
+      </div>
+      <div class="couse-upload-section" *ngIf="userrole=='Admin'">
+        <a href="/uploadcourse" class="upload"  >Upload Course</a>
+      </div>
+      <div class="couse-upload-section" *ngIf="userrole=='Admin'">
+        <button class="upload" (click)="updatecourse()" *ngIf="!updatecourseoption" >Update Course</button>
+    </div>
+      <div class="edit-profile-form" *ngIf="editprofileoption">
+        <input type="text" [(ngModel)]="newusername" placeholder="Enter new Name">
+        <input type="text" [(ngModel)]="newemail" placeholder="Enter new Email">
+        <a (click)="editprofile()">Make Changes</a>
+      </div>
+  </div>
+
+<div class="update" *ngIf="updatecourseoption">
+  <h2>Which one want to update</h2>
+  <div class="courses" *ngIf="updatecourseoption">
+    <app-udate-course *ngFor="let course of courses" [course]="course" buttontext="update"></app-udate-course>
+  </div>
+</div>
+<app-footer></app-footer>

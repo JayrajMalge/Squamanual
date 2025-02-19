@@ -1,0 +1,151 @@
+
+
+.course-container {
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: #F7F7F7;
+}
+
+.course-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px;
+  max-width: 1200px; 
+  width: 100%;
+  border: 1px solid #EEEEEE;
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.course-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Course Information */
+.course-info {
+  padding: 20px;
+  flex: 1;
+}
+
+.course-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 10px;
+  line-height: 1rem;
+}
+
+.course-description {
+  color: #333333;
+  margin: 10px 0;
+  margin-top: 1.3rem;
+  line-height: 1.5rem;
+  word-spacing: 5px;
+}
+
+
+.course-content {
+  margin: 15px 0;
+}
+
+.course-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-content li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.course-content li::before {
+  content: "✔️";
+  color: #2E86AB;
+  margin-right: 10px;
+}
+
+/* Buttons Styling */
+.course-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.primary-btn {
+  background-color: #F6F5AE;
+  color: #2E86AB;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 200px;
+}
+
+.primary-btn:hover {
+  background-color: #2E86AB;
+  color: #F6F5AE;
+}
+
+.secondary-btn {
+  background-color: #2E86AB;
+  color: #F6F5AE;
+  border: 2px solid #2E86AB;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 200px; 
+}
+
+.secondary-btn:hover {
+  background-color: #F6F5AE;
+  color: #2E86AB;
+}
+
+@media screen and (max-width: 768px) {
+  .course-card {
+    flex-direction: column; 
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
+}
+
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db; /* Blue color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 45.6%;
+  margin-top: 2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+h2{
+  font-size: 1.7rem;
+}
+p{
+  font-size: 1.2rem;
+}

@@ -1,0 +1,1 @@
+function toggleAnswer(t){const e=t.nextElementSibling,n=t.querySelector(".toggle-icon");e.style.display==="block"?(e.style.display="none",n.textContent="\u25B6"):(e.style.display="block",n.textContent="\u25BC")}

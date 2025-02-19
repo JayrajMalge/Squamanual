@@ -1,0 +1,139 @@
+<app-header></app-header>
+<div class="main">
+   
+<form (submit)="updatecourse()">
+  <div>
+    <label>Course Name:</label>
+    <input type="text"  name="courseName" required [(ngModel)]="course.name" [ngModelOptions]="{standalone: true}" />
+  </div>
+
+  <div>
+    <label>Course Description:</label>
+    <textarea [(ngModel)]="course.descriptionmarkup" name="courseDescription" required [ngModelOptions]="{standalone: true}"></textarea>
+  </div>
+
+  <div>
+    <label>Course Category:</label>
+    <div class="custom-select-container">
+      <select name="courseCategory" [(ngModel)]="cat" id="courseCategory" class="custom-select" required [ngModelOptions]="{standalone: true}">
+            <option value=8>Development</option>
+            <option value=9>Marketing</option>
+            <option value=10>Fitness</option>
+            <option value=11>Design</option>
+            <option value=12>Social Science</option>
+            <option value=13>Social Media</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label>Course Level:</label>
+    <div class="custom-select-container">
+      <select name="courseLevel" [(ngModel)]="course.difficulty" id="courseCategory" class="custom-select" [ngModelOptions]="{standalone: true}">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+  </div>
+
+  <input type="submit" value="Upadte Course">
+</form>
+
+<form >
+  <div class="topics">
+    <select name="topic" id="topicdropdown" [(ngModel)]="selectedtopicid" (change)="selectedtopic()" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let topic of topics" [value]="topic.topicid">{{topic.name}}</option>
+    </select>
+  </div>
+  <div class="topics">
+    <input type="submit" value="Add topic" (click)="changestatus('topic')">
+  </div>
+  <div class="topics" *ngIf="topictoaddstatus">
+     <input type="text" placeholder="Enter Topic name" [(ngModel)]="topictoadd.name" [ngModelOptions]="{standalone:true}" >
+     <input type="submit" value="Add New topic" (click)="addtopic()">
+  </div>
+  <form *ngIf="topicstatus">
+    <div>
+      <label>Topic Name:</label>
+      <input type="text"  name="courseName" required [(ngModel)]="selectedtopicobject.name" [ngModelOptions]="{standalone: true}" />
+      <input type="submit" value="Update Topic" (click)="updatetopic()">
+    </div>
+  </form>
+</form>
+
+<form *ngIf="topicstatus">
+  <div class="concepts">
+    <select name="concept" id="conceptdropdown" [(ngModel)]="selectedconceptid" (change)="seletedconcept()" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let con of conceptarray" [value]="con.conceptid">{{con.title}}</option>
+    </select>
+  </div>
+  <div class="concepts">
+    <input type="submit" value="Add Concept" (click)="changestatus('concept')">
+  </div>
+  <div class="topics" *ngIf="concepttoaddstatus">
+     <input type="text" placeholder="Enter Topic name" [(ngModel)]="concepttoadd.title" [ngModelOptions]="{standalone:true}" >
+     <input type="submit" value="Add New topic" (click)="addtopic()">
+     <textarea [(ngModel)]="concepttoadd.descriptionmarkup" placeholder="Description Of Concept" [ngModelOptions]="{standalone: true}" ></textarea>
+     <input type="submit" (click)="addconcept()">
+  </div>
+  <form *ngIf="conceptstatus" >
+    <div class="concepts">
+      <label>Concept Title:</label>
+      <input type="text" [(ngModel)]="selectedconceptobject.title" [ngModelOptions]="{standalone: true}"  />
+      <label>Concept Description:</label>
+      <textarea [(ngModel)]="selectedconceptobject.descriptionmarkup" [ngModelOptions]="{standalone: true}" ></textarea>
+      <input type="submit" value="Update Concept" (click)="updateconcept()" >
+    </div>
+  </form>
+  <div class="questions">
+    <input type="submit" value="Add Question" (click)="changestatus('question')">
+  </div>
+  <div class="questions" *ngIf="questiontoaddstatus">
+     <input type="text" placeholder="Enter Question" [(ngModel)]="concepttoadd.title" [ngModelOptions]="{standalone:true}" >
+     <div class="custom-select-container">
+      <select name="" [(ngModel)]="questiontoadd.diffculty" [ngModelOptions]="{standalone: true}" id="courseCategory" class="custom-select">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+        <option value="Master">Master</option>
+      </select>
+      <input type="text" [(ngModel)]="singleotion" placeholder="Enter Option 1" required (change)="optionadding()"/>
+      <input type="text" [(ngModel)]="singleotion" placeholder="Enter Option 2" required (change)="optionadding()" >
+      <input type="text" [(ngModel)]="singleotion" placeholder="Enter Option 3" required (change)="optionadding()" >
+      <input type="text" [(ngModel)]="singleotion" placeholder="Enter Option 4" required (change)="optionadding()" >
+    </div>
+     <input type="submit" (click)="addquestion()">
+  </div>
+</form>
+
+
+<form *ngIf="hasquestion">
+  <div class="questions">
+    <select name="question" id="conceptdropdown" [(ngModel)]="selectedquestionid" (change)="seletedquestion()">
+      <option *ngFor="let que of questionarray" [value]="que.questionid">{{que.questionmarkup}}</option>
+    </select>
+  </div>
+  <div class="form" *ngIf="questionstatus">
+    <form >
+      <label>Question:</label>
+      <input type="text" [(ngModel)]="selectedquestionobject.questionmarkup"  [ngModelOptions]="{standalone: true}" />
+      <label>Select difficulty</label>
+      <div class="custom-select-container">
+        <select name="" [(ngModel)]="selectedquestionobject.diffculty" [ngModelOptions]="{standalone: true}" id="courseCategory" class="custom-select">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Master">Master</option>
+        </select>
+      </div>
+      <div *ngFor="let otp of options;let i = index">
+        <label>Option {{i}}</label>
+        <input type="text"  name="courseName" required [(ngModel)]="options[i]" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <input type="submit" value="update question" (click)="updatequestion()">
+    </form>
+  </div>
+</form>
+</div>
+<app-footer></app-footer>

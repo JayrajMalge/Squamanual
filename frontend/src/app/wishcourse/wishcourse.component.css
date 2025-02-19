@@ -1,0 +1,57 @@
+.course-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 30px;
+}
+
+.course-card {
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-top: 5px solid #2E86AB;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: scale(1.03);
+}
+
+.course-title {
+  font-size: 1.2em;
+  color: #2E86AB;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.course-description {
+  color: #333333;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  line-height: 20px;
+  margin-bottom: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.button {
+  background-color: #2E86AB;
+  color: #333333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.button:hover {
+  background-color: #F6F5AE;
+  color: #2E86AB;
+  border: 1px solid #333333;
+}
+  

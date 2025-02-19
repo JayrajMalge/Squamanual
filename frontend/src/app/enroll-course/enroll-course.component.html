@@ -1,0 +1,118 @@
+<app-header></app-header>
+<div class="container">
+  <mat-card class="header">
+    <h1 class="course-title">{{ course.name }}</h1>
+    <p class="course-description" [innerHTML]="course.descriptionmarkup"></p>
+  </mat-card>
+
+  <section class="content">
+    <div class="video-section">
+      <iframe
+        [src]="imgurl"
+        frameborder="0"
+        allowfullscreen
+        class="video-player">
+      </iframe>
+    </div>
+
+    <mat-card class="topics-section">
+      <h2>Course Topics</h2>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let topic of topics" (opened)="toggleSubtopics(topic)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ topic.name }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul class="subtopics-list">
+            <li *ngFor="let concept of conceptarray" class="subtopic">
+              <a (click)="playvideo(topic, concept)">{{ concept.title }}</a>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+
+    <div class="tabs">
+      <button 
+        class="tab-button" 
+        *ngFor="let tab of tabs; let i = index" 
+        [class.active]="i === activeTab"
+        (click)="selectTab(i)">
+        {{ tab.label }}
+      </button>
+    </div>
+  </section>
+
+  <mat-card class="review-section" *ngIf="activeTab==1">
+    <h2>User Reviews</h2>
+    <form (ngSubmit)="submitReview()" *ngIf="reviews.length == 0">
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          [(ngModel)]="userReview"
+          name="review"
+          placeholder="Write your review..."
+          required>
+        </textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Submit Review</button>
+    </form>
+
+    <div class="review" *ngIf="reviews.length > 0">
+      <h3>{{reviews[0].descriptionmarkup}}</h3>
+    </div>
+  </mat-card>
+  <mat-card *ngIf="givequizoption && conceptquestions.length == 0" class="quiz-content">
+     <p>For this module Quiz is not available</p>
+  </mat-card>
+  <mat-card class="quiz-content" *ngIf="givequizoption && conceptquestions.length > 0">
+    <mat-progress-bar
+      mode="determinate"
+      [value]="(currentQuestionIndex / conceptquestions.length) * 100">
+    </mat-progress-bar>
+
+    <div class="question-container" *ngIf="!showmark">
+      <h2>Question {{ currentQuestionIndex + 1 }}:</h2>
+      <p>{{conceptquestions[currentQuestionIndex].questionmarkup}}</p>
+    </div>
+
+    <div class="question-container" *ngIf="showmark">
+      <h2>Successfully submitted quiz. Your score is {{ marks }}</h2>
+    </div>
+
+    <div class="answer-list" *ngIf="!showmark">
+      <mat-radio-group [(ngModel)]="selectedAnswer">
+        <mat-radio-button
+          *ngFor="let answer of conceptquestions[currentQuestionIndex].answermarkup.split(',')"
+          [value]="conceptquestions[currentQuestionIndex].answermarkup.split(',').indexOf(answer)">
+          {{ answer }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="button-group" *ngIf="!showmark">
+      <button
+        (click)="previousQuestion()"
+        [disabled]="currentQuestionIndex === 0">
+        Previous
+      </button>
+      <button
+        (click)="nextQuestion()"
+        [disabled]="!selectedAnswer">{{buttontext}}
+      </button>
+    </div>
+
+    <div class="button-group" *ngIf="showmark">
+      <button mat-raised-button color="warn" (click)="retest()">Retest</button>
+    </div>
+  </mat-card>
+</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <app-footer></app-footer>
+
+
+  <!---->

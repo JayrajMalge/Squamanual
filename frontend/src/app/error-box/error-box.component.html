@@ -1,0 +1,16 @@
+<div class="dialog-overlay" *ngIf="isOpen">
+    <div class="dialog-box">
+      <div class="dialog-header">
+        <button class="close-btn" (click)="closeDialog()">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div class="carousel">
+          <h3>{{conetnt}}</h3>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button class="dialog-btn secondary" (click)="closeDialog()">Close</button>
+      </div>
+    </div>
+</div>
+  

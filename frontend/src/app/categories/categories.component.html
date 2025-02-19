@@ -1,0 +1,7 @@
+<app-header></app-header>
+<div class="main">
+    <div class="courses">
+        <a *ngFor="let course of courses" href="/fullScreencourse/{{course.courseid}}"><app-category-course [course]="course"></app-category-course></a>
+    </div>
+</div>
+<app-footer></app-footer>

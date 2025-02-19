@@ -1,0 +1,15 @@
+<div class="faq-container">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let faq of faqs; let i = index" (opened)="toggleAnswer(i)" (closed)="toggleAnswer(i)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ faq.question }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ faq.answer }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+

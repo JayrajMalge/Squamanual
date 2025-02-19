@@ -1,0 +1,95 @@
+<app-header></app-header>
+  <form [formGroup]="courseForm" >
+    <div>
+      <label>Course Name:</label>
+      <input type="text"  name="courseName" required formControlName="name"/>
+    </div>
+  
+    <div>
+      <label>Course Description:</label>
+      <textarea formControlName="description" name="courseDescription" required ></textarea>
+    </div>
+  
+    <div>
+      <label>Course Category:</label>
+      <div class="custom-select-container">
+        <select name="courseCategory" formControlName="courseCategory" id="courseCategory" class="custom-select" required>
+              <option value=8>Development</option>
+              <option value=9>Marketing</option>
+              <option value=10>Fitness</option>
+              <option value=11>Design</option>
+              <option value=12>Social Science</option>
+              <option value=13>Social Media</option>
+        </select>
+      </div>
+    </div>
+  
+    <div>
+      <label>Course Level:</label>
+      <div class="custom-select-container">
+        <select name="courseLevel" formControlName="level" id="courseCategory" class="custom-select">
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <h3>Topics</h3>
+      <button type="button" (click)="addnewtopic()">Add Topic</button>
+      <div formArrayName="topics" class="topics">
+        <form *ngFor="let topic of topic.controls; let i = index" [formGroupName]="i" >
+          <label>Topic Name:</label>
+          <button type="button" class="remove-btn" (click)="removeTopic(i)">Remove Concept</button>
+          <input type="text" formControlName="topicname"/>
+          <div>
+            <h4>Concepts</h4>
+            <button type="button" (click)="addnewconcepts(i)">Add Concept</button>
+            <div formArrayName="topicconcepts" class="concepts">
+              <form *ngFor="let concept of getconcept(i).controls; let j = index" [formGroupName]="j" >
+                <label>Concept Title:</label>
+                <input type="text" formControlName="conceptname"  />
+                <label>Concept Description:</label>
+                <button type="button" class="remove-btn" (click)="removeConcept(i, j)">Remove Concept</button>
+                <textarea formControlName="conceptdescription" [name]="'conceptDescription' + i + j"></textarea>
+                <div>
+                  <h5>Questions</h5>
+                  <button type="button" (click)="addnewquestion(i, j)">Add Question</button>
+                  <div formArrayName="conceptquestions" class="questions">
+                    <form *ngFor="let question of getquestionbyindex(i,j).controls; let questionIndex = index" [formGroupName]="questionIndex" >
+                      <label>Question:</label>
+                      <input type="text" formControlName="question"  [name]="'question' + i + j + questionIndex" />
+                      <button type="button" class="remove-btn" (click)="removeQuestion(i, j, questionIndex)">Remove Question</button>
+                      <label>Select difficulty</label>
+                      <div class="custom-select-container">
+                        <select name="" formControlName="difficulty" id="courseCategory" class="custom-select">
+                          <option value="Low">Low</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Hard">Hard</option>
+                          <option value="Master">Master</option>
+                        </select>
+                      </div>
+                      <label>Options 1</label>
+                      <input type="text" formControlName="option1" placeholder="Option 1"/>
+                      <label>Options 1</label>
+                      <input type="text" formControlName="option2" placeholder="Option 2"/>
+                      <label>Options 1</label>
+                      <input type="text" formControlName="option3" placeholder="Option 3"/>
+                      <label>Options 1</label>
+                      <input type="text" formControlName="option4" placeholder="Option 4"/>
+                      <label>Right Answer:</label>
+                      <input type="number" placeholder="Right Answer " formControlName="answer" />
+                    </form>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="spinner" [hidden]="spinnerstatus"></div>
+    <button type="submit" (click)="submitformgroup()" *ngIf="spinnerstatus">Submit</button>
+  </form>
+
+<app-footer></app-footer>

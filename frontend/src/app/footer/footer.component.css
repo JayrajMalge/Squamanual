@@ -1,0 +1,138 @@
+.footer {
+    background-color : #2E86AB;
+    color: #ddd;
+    padding: 40px 0;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-columns {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+  }
+  
+  .footer-column {
+    width: 30%;
+  }
+  
+  .footer-column h4 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-column ul li a:hover {
+    color: black; /* Gold hover effect */
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icons a {
+    color: #ddd ;
+    background-color: #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+  }
+  
+  .social-icons a:hover {
+    background-color: #00aaa0; /* Gold hover effect */
+    transform: scale(1.1); /* Slight enlargement on hover */
+  }
+  
+
+  #connect{
+    padding: 10px 10px 10px 10px;
+    color: #333333;
+    background-color: #F6F5AE;
+    text-decoration: none;
+  }
+
+  #aboutus{
+    margin-right: 4.5rem;
+  }
+  @media (max-width : 1150px) {
+    #aboutus{
+      margin-right: 3.5rem;
+    }
+  }
+
+
+  @media (max-width : 950px) {
+    #aboutus{
+      margin-right: 1rem;
+    }
+  }
+
+
+  @media (max-width : 900px) {
+    #aboutus{
+      margin-right: 2rem;
+    }
+    .footer-column {
+      width: 45%;
+    }
+    .footer-columns {
+      width: 95%;
+    }
+  }
+
+  @media (max-width : 800px) {
+    #aboutus{
+      margin-right: 2rem;
+    }
+  }
+
+  .footer-bottom{
+    margin-top: 2rem;
+  }
+  @media (max-width : 750px) {
+    .footer-columns{
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .footer-column{
+      width: 80%;
+    }
+    .footer-column h4{
+      font-size: 1rem;
+    }
+    .footer-column p{
+      font-size: 1rem;
+      letter-spacing: 2px;
+      line-height: 1rem;
+    }
+    .footer-bottom{
+      margin-top: 2rem;
+    }
+  }

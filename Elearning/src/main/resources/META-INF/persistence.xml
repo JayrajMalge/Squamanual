@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="com.learing_Elearning_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.learing.Elearning.entities.Users</class>
+    <class>com.learing.Elearning.entities.Topic</class>
+    <class>com.learing.Elearning.entities.User</class>
+    <class>com.learing.Elearning.entities.Wishcourse</class>
+    <class>com.learing.Elearning.entities.Course</class>
+    <class>com.learing.Elearning.entities.Reviews</class>
+    <class>com.learing.Elearning.entities.Question</class>
+    <class>com.learing.Elearning.entities.Usercourse</class>
+    <class>com.learing.Elearning.entities.Faquestions</class>
+    <class>com.learing.Elearning.entities.Testquestion</class>
+    <class>com.learing.Elearning.entities.Category</class>
+    <class>com.learing.Elearning.entities.Concept</class>
+    <class>com.learing.Elearning.entities.Test</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/elearning"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Jayrajmalge@123"/>
+    </properties>
+  </persistence-unit>
+</persistence>

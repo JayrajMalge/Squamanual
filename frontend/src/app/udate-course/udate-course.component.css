@@ -1,0 +1,77 @@
+.course {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00aaa0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 16px;
+    padding: 16px;
+    max-width: 400px;
+    color: black;
+}
+
+.course:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+.course .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.course h4 {
+    font-size: 1.2rem;
+    color: #00aaa0;
+    margin: 0 0 8px;
+}
+
+.course p {
+    font-size: 0.9rem;
+    height: 50px;
+    color: #333;
+    margin: 0 0 16px;
+    overflow: auto;
+}
+
+.course .buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.course .buttons a {
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+}
+
+.course .buttons a {
+    background-color: #00aaa0;
+    color: white;
+}
+
+/*.course .buttons a:first-child:hover {
+    background-color: #007b77;
+}*/
+
+.course .buttons a:hover {
+    background-color: white;
+    border: 2px #00aaa0 solid;
+    color: #00aaa0;
+}
