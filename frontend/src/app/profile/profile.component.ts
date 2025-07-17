@@ -39,12 +39,10 @@ export class ProfileComponent implements OnInit{
         (response)=>{
           this.user = response
           this.userrole = this.user.role
-          this.userservice.getfaqbyuserid(this.user.userid).subscribe(
+          this.userservice.getfaqbyuserid(this.user.userid||0).subscribe(
             (response)=>{
               this.faqs = response
-            },(error)=>{
-              console.log(error)
-            }
+            },(error)=>{ }
           )
 
         },(error)=>{
@@ -100,7 +98,7 @@ export class ProfileComponent implements OnInit{
     faq.question = this.userquestion
     faq.answer = ''
     faq.createat = new Date()
-    faq.user = this.user.userid
+    faq.user = this.user.userid || 1
     faq.updatedat = new Date()
     this.userservice.addfaquestion("addfaquestion",faq).subscribe(
       (response)=>{
@@ -133,3 +131,4 @@ if (isPlatformBrowser(this.platformId)) {
     this.loginStatus = true
   }
 }*/
+

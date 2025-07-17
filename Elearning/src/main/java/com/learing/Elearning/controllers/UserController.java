@@ -29,7 +29,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,9 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@Controller
 public class UserController {
-    
     
     @Autowired
     private userRepository users; 
@@ -90,85 +87,12 @@ public class UserController {
     public List<User> All_user(){
         return users.findAll();
     }
-   
-    /*@GetMapping("/user")
-    public User oauthlogin(OAuth2AuthenticationToken token, Model model)
-    {
-        model.addAttribute("name", token.getPrincipal().getAttribute("name"));
-        model.addAttribute("email", token.getPrincipal().getAttribute("email"));
-        model.addAttribute("photo", token.getPrincipal().getAttribute("picture")); 
-        String username = token.getPrincipal().getAttribute("email");
-        User checkUser = users.findByEmail(username);
-        if (checkUser != null) {
-             return checkUser;
-        } else {
-            User user = new User();
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String hashedPassword = passwordEncoder.encode("googleAuthenticate");
-            user.setPasswordhashsalted(hashedPassword);
-            user.setEmail(username);
-            user.setActive(1);
-            user.setRole("User");
-            user.setUsername(username);
-            user.setName(username.split("@")[0]);
-            Date date = new Date();
-            user.setCreateat(date);
-            user.setUpdatedat(date);
-
-            User saveduser = users.save(user);
-            return saveduser;
-        }
-    }*/
-    
-        
+           
     @GetMapping("/home")
     public String getView(){
         return "view";
     }
     
-   @PostMapping("/sign")
-    public ResponseEntity<User> sigin(@RequestParam String username, @RequestParam String password){
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String hashedPassword = passwordEncoder.encode(password);
-            User user = new User();
-            user.setPasswordhashsalted(hashedPassword);
-            user.setEmail(username);
-            user.setActive(1);
-            user.setRole("User");
-            user.setUsername(username);
-            user.setName(username.split("@")[0]);
-            Date date = new Date();
-            user.setCreateat(date);
-            user.setUpdatedat(date);
-            User saveduser = users.save(user);
-            return ResponseEntity.ok(saveduser);
-    }
-    
-    @PostMapping("/authlogin")
-    public ResponseEntity<User> authlogin(@RequestBody User user)
-    {
-        User checkUser = users.findByEmail(user.getEmail());
-        if (checkUser != null) {
-           return ResponseEntity.ok(checkUser);
-        } 
-        User us=  users.save(user);
-        return ResponseEntity.ok(us);
-    }
-    
-    @PostMapping("/manualLogin")
-     public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        User checkUser = users.findByEmail(username);
-        if (checkUser != null) {
-            if (passwordEncoder.matches(password, checkUser.getPasswordhashsalted())) {
-                return ResponseEntity.ok(checkUser);
-             } else {
-                return ResponseEntity.ok(null) ;
-             }
-        } 
-        return ResponseEntity.ok(null);
-    }
-
     @GetMapping("/getallcourses")
     public List<Course> getallcourses(){
         return courses.findAll();
@@ -366,5 +290,15 @@ public class UserController {
         Question addedquestion = questions.save(question);
         return addedquestion;
     }
+    
+    @PostMapping("/createnewusergooglelogin")
+    public User createnewusergooglelogin(@RequestBody User us){
+        User alus = this.users.findByEmail(us.getEmail());
+        if(alus!=null){
+            return alus;
+        }
+        return this.users.save(us);
+    }
+
     
 }

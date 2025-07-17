@@ -1,3 +1,3 @@
 export const environment = {
-    API_ENDPOINT:""
+    API_ENDPOINT:"/"
 };

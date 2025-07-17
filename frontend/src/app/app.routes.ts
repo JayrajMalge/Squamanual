@@ -12,6 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UdateCourseFormComponent } from './udate-course-form/udate-course-form.component';
 import { UploadCourseComponent } from './upload-course/upload-course.component';
 import { ViewallcoursesComponent } from './viewallcourses/viewallcourses.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 export const routes: Routes = [ 
     {path : "",component : MainPageComponent},
@@ -25,7 +26,8 @@ export const routes: Routes = [
     {path : "category/:categoryid",component : CategoriesComponent},
     {path : "updatecourse/:courseid",component : UdateCourseFormComponent},
     {path : "uploadcourse",component : UploadCourseComponent},
-    {path : "viewcourses",component : ViewallcoursesComponent}
+    {path : "viewcourses",component : ViewallcoursesComponent},
+    {path : "login",component : LoginComponent}
     //{ path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

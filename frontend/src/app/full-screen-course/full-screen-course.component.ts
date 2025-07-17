@@ -73,7 +73,7 @@ export class FullScreenCourseComponent  implements OnInit {
       if(email!=null && email!=''){
           this.userservice.getuserfromemail(email).subscribe((response)=>{
                 this.user = response;
-                this.userservice.getwishlistedcourse("wishlistedcoursefromuserid",this.user.userid).subscribe(
+                this.userservice.getwishlistedcourse("wishlistedcoursefromuserid",this.user.userid || 0).subscribe(
                   (response)=>{
                         this.wishcourses = response
                         this.wishcourses.map((course)=>{
@@ -86,7 +86,7 @@ export class FullScreenCourseComponent  implements OnInit {
                       console.log(error)
                   }
                 )
-                this.userservice.getusercourses("usercoursefromuserid",this.user.userid).subscribe(
+                this.userservice.getusercourses("usercoursefromuserid",this.user.userid || 0).subscribe(
                   (response)=>{
                     this.usercourses = response
                     console.log(this.usercourses)
@@ -135,7 +135,7 @@ export class FullScreenCourseComponent  implements OnInit {
     
     this.wishcourse = this.course
     this.wishcourse.course = this.course.courseid;
-    this.wishcourse.user = this.user.userid
+    this.wishcourse.user = this.user.userid || 0;
     console.log(this.wishcourse)
     this.userservice.sendcoursetowishlist("addcourseintowishlist",this.wishcourse).subscribe(
       (response)=>{            
@@ -153,7 +153,7 @@ export class FullScreenCourseComponent  implements OnInit {
   public buycourse(){
     this.spinnerstatus = false
     this.coursestatus.enrollstatus = true
-    this.coursetoadduserlearning.user = this.user.userid;
+    this.coursetoadduserlearning.user = this.user.userid || 0;
     this.coursetoadduserlearning.course = this.courseId
     this.coursetoadduserlearning.createat = new Date()
     this.coursetoadduserlearning.updatedat = new Date()

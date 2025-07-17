@@ -1,54 +1,149 @@
-.adv_box{
+/* ===== Color Variables ===== */
+:root {
+    --primary-color: #6c63ff;
+    --secondary-color: #4d44db;
+    --dark-color: #2a2a72;
+    --light-color: #f8f9fa;
+    --text-color: #333;
+    --text-light: #777;
+  }
+  
+  /* ===== Adv Box Container ===== */
+  .adv-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    gap: 60px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* ===== Animation Section ===== */
+  .animation-container {
+    flex: 1;
+    position: relative;
+  }
+  
+  .floating-animation {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .animation-image {
     width: 100%;
-    height: max-content;
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    background-color: #F6F5AE;  
-}
-.content{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .animation-highlight {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    opacity: 0.1;
+    border-radius: 12px;
+    top: 20px;
+    left: 20px;
     z-index: 1;
-    background-color: #F6F5AE;  
-}
-h1{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* ===== Content Section ===== */
+  .content-box {
+    flex: 1;
+    max-width: 600px;
+  }
+  
+  .main-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
     color: #2E86AB;
-    font-size: calc(15px + 1vw);
-}
-.animation{
-    width: 45%;
-    z-index: 0;
-    background-color: #F6F5AE;  
-}
-.content p{
-    font-size: 25px;
-    color: #333333;
-    line-height: 2rem;
-}
-
-@media (max-width : 950px) {
-    .adv_box{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    line-height: 1.3;
+  }
+  
+  .intro-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-bottom: 30px;
+  }
+  
+  /* ===== Benefits Section ===== */
+  .benefits-section {
+    margin-top: 30px;
+  }
+  
+  .benefits-heading {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .benefits-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .benefit-icon {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-top: 3px;
+  }
+  
+  .benefit-item p {
+    font-size: 1.05rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 992px) {
+    .adv-box {
+      flex-direction: column;
+      padding: 40px 20px;
+      gap: 40px;
     }
-    .animation{
-        height: 50%;
-        width: 50%;
+    
+    .content-box {
+      order: 1;
+      max-width: 100%;
     }
-    .content h1{
-        font-size: 2rem;
+    
+    .animation-container {
+      order: 2;
+      width: 100%;
     }
-    .content p{
-        font-size: 1rem;
+    
+    .main-heading {
+      font-size: 2.2rem;
     }
-    .content{
-        width: 80%;
+  }
+  
+  @media (max-width: 768px) {
+    .main-heading {
+      font-size: 2rem;
     }
-}
+    
+    .benefits-heading {
+      font-size: 1.5rem;
+    }
+  }

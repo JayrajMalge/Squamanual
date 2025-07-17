@@ -27,7 +27,7 @@ export class MylearningComponent implements OnInit {
           this.userservice.getuserfromemail(email).subscribe(
           (response)=>{
              this.user = response;
-             this.userservice.getusercourses("usercoursefromuserid",this.user.userid).subscribe(
+             this.userservice.getusercourses("usercoursefromuserid",this.user.userid || 0).subscribe(
               (response)=>{
                 this.usercourses = response
                 console.log(this.usercourses)

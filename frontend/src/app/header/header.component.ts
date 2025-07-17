@@ -4,13 +4,14 @@ import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { LoginComponent } from "../login/login.component";
 
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, LoginComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -62,4 +63,17 @@ export class HeaderComponent implements OnInit{
     this.isOpen = false;
   }
   
+
+  isprofile: boolean = false;
+  openprofiledialog() {
+    this.isprofile = true;
+  }
+  handleprofile() {
+    this.isprofile = false;
+  }
+
+  handleprofilesubmit() {
+    this.isprofile = false;
+  }
+
 }

@@ -41,7 +41,7 @@
 }
 
 .course-price.free {
-  color: #007bff; /* Green color for free courses */
+  color: #28a745; /* Green color for free courses */
 }
 
 .course-level {
@@ -79,18 +79,4 @@ mat-chip.advanced {
   width: 100%;
   margin-top: 8px;
   font-weight: bold;
-}
-
-/* Add this to your component's CSS file */
-.tabs {
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.tab {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
 }

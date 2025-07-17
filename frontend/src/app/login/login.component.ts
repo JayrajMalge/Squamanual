@@ -1,189 +1,84 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit ,EventEmitter,Input,Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from '../footer/footer.component';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { User } from '../entities';
-import { ErrorBoxComponent } from "../error-box/error-box.component";
-import { HeaderComponent } from '../header/header.component';
+import { WebClientService } from '../web-client.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, FooterComponent, ErrorBoxComponent,HeaderComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
-  selectedTab : string = 'User';
-  selectTab(usertype : string){
-    this.selectedTab = usertype
+  constructor(private webclinet : WebClientService,private users : UserService,private router : Router){}
+
+  @Input() isOpen: boolean = true;
+  @Output() close = new EventEmitter<void>();
+  @Output() formSubmit = new EventEmitter<string>();
+  
+  closeDialog(){
+    this.isOpen = false;
+    this.close.emit();
   }
-
-  constructor(private userservice : UserService,private router : Router,@Inject(PLATFORM_ID) private platformId: Object){}
-  username : string = '';
-  password : string = '';
-  user : any = new User()
-
-  forgetpass : boolean = false
-
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      (window as any).handleCredentialResponse = (response: any) => {
-        this.handleGoogleSignIn(response);
-      };
-    }
+    (window as any).handleCredentialResponse = (response: any) => {
+      this.handleGoogleSignIn(response);
+    };
   }
   
-
-  userlogin(){
-    if(this.username!='' && this.password!=''){
-        this.userservice.usermanuallogin(this.username,this.password).subscribe(
-          (response)=>{
-            if(response==null){
-              this.errormessage = 'Incorrect Password' ;
-              this.openDialog()
-            } else{
-              this.user = response;
-              window.localStorage.setItem("elearning",this.user.email);
-              this.router.navigate(['/main'])
-            }
-          },(error)=>{
-
-          }
-        )
-     }else{
-      alert("Invalid account")
-     }
-  }
-
-  error = {
-    errormessage : '',
-    status : false
-  }
-
-  forgetpassword(){
-    this.forgetpass = true
-  }
-
-  otpsendstatus : boolean = true
-  succesotp : boolean = false
-  sendotp(){
-      this.otpsendstatus = false
-      this.userservice.sendotp(this.username).subscribe(
-        (response)=>{if(!response){this.errormessage = 'You Have not registered Yet' ;this.openDialog()}
-        this.succesotp = true;this.otpsendstatus=false;this.forgetpass=false
-      },(error)=>{}
-      )
-  }
-
-  otp : string = '';
-
-  newdetail : boolean = false
-  verifyotp(){
-      this.otpsendstatus = false
-      this.userservice.verifyotp(this.username,this.otp).subscribe(
-        (response)=>{if(this.olduser==null){this.errormessage = 'Invaild OTP' ;this.openDialog()}
-        this.olduser = response;console.log(this.olduser);this.otpsendstatus = false;this.succesotp=false;this.newdetail=true
-      },(error)=>{this.errormessage = 'Invaild OTP' ;this.openDialog()}
-      )
-  }
-
-  newuser : User = new User()
-  olduser : any = new User()
-
-  passwordhashed : string = '';
-  updateuser(){
-    this.newuser.active = 1
-    this.newuser.email = this.username
-    this.newuser.name = this.username.split("@")[0]
-    this.newuser.role = this.olduser.role
-    this.newuser.createat = new Date()
-    this.newuser.updateat = new Date()
-    this.newuser.username = this.olduser.username
-    this.newuser.passwordhashsalted = this.passwordhashed
-    this.newuser.userid = this.olduser.userid
-    this.userservice.setnewpassword(this.newuser).subscribe(
-      (response)=>{this.newdetail = false,this.forgetpass = false;this.succesotp = false},(error)=>{this.errormessage = 'Failed to Set new Password'}
-    )
-  }
-
-  registerform(){
-    this.registerstatus = true
-  }
-  registerstatus : boolean = false
-  confirmpassword : string = ''
-  register(){
-    if(this.password==this.confirmpassword)
-    {
-      if(this.username!='' && this.password!=''){
-        this.userservice.usermanuallogin(this.username,this.password).subscribe(
-          (response)=>{
-            if(response==null){
-              this.errormessage = 'Incorrect Password' ;
-              this.openDialog()
-            } else{
-              this.user = response;
-              window.localStorage.setItem("elearning",this.user.email);
-              this.router.navigate(['/main'])
-            }
-          },(error)=>{
-
-          }
-        )
-     }else{
-      alert("Invalid account")
-     }
-    }else{
-      this.errormessage = "Password not Matches with Confirm password"
-      this.openDialog()
+handleGoogleSignIn(response: any): void {
+  try {
+    if (!response?.credential) {
+      throw new Error('No credential found in response');
     }
-  } 
 
-  handleGoogleSignIn(response: any) {
     const decodedToken = this.parseJwt(response.credential);
+    
+    if (!decodedToken?.email) {
+      throw new Error('Invalid token - missing email');
+    }
+
     console.log('Decoded Token:', decodedToken);
-    let user : User = new User()
+
+    const user: User = new User();
     user.email = decodedToken.email
-    user.role = 'User'
-    user.updateat = new Date()
     user.createat = new Date()
-    user.username = decodedToken.email
-    this.userservice.googleauthlogin(user).subscribe(
+    user.active = 1
+    user.role = "User"
+    user.name = decodedToken.name
+    user.username = decodedToken.given_name
+    this.users.createuser(user).subscribe(
       (response)=>{
-        if (isPlatformBrowser(this.platformId)) {
+          this.router.navigate(['/'])
           window.localStorage.setItem("elearning",decodedToken.email)
-         this.router.navigate(["/main"])
-        }
-        },(error)=>{}
+          console.log(response)
+        },(error)=>{console.log(error)}
     )
-  }
+  } catch (error) {}
+}
 
-  parseJwt(token: string) {
+private parseJwt(token: string): any {
+  try {
     const base64Url = token.split('.')[1];
+    if (!base64Url) throw new Error('Invalid token format');
+    
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    
     return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error parsing JWT:', error);
+    throw error; // Re-throw to be caught in the calling function
   }
-
-  isDialogOpen: boolean = false;
-  errormessage : string = ''
-  openDialog() {
-    this.isDialogOpen = true;
-  }
-
-  handleConfirm() {
-    console.log('Confirmed!');
-    this.isDialogOpen = false;
-  }
-
-  handleClose() {
-    console.log('Dialog closed');
-    this.isDialogOpen = false;
-  }
-
+}
+  
 }

@@ -30,7 +30,7 @@ public class SecurityConfig {
                        "/getreviewbyuserandcourse/{userid}/{courseid}","/auth/login","/getfaqquestionbyuserid/{userid}",
                        "/getfaqquestion","/addfaquestion","/getgroupbyfaqquestion","/updateanswer","/getcoursefromcourseid/{courseid}",
                        "/addquestion","/getallcourses","/alalal","/sendOTPtoemail/{email}","/emailverfication","/setnewuserpassword",
-                       "/getcoursesbyname/{name}","/","/look"
+                       "/getcoursesbyname/{name}","/","/look","/getcoursesbyname","/createnewusergooglelogin"
                ).permitAll();
                registry.anyRequest().authenticated();
         })

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { WebClientService } from './web-client.service';
 import { User,Course,category,Review,Usercourse,topic,Concept, Wishcourse, question, Faquestion, test } from './entities';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
@@ -30,7 +29,7 @@ export class UserService {
   }
   public register(user: User)
   {
-    return this.webClient.post<typeof user,typeof user>('/adduser',user);
+    return this.webClient.post<typeof user,typeof user>('adduser',user);
   }
 
   getallcategories(){
@@ -39,7 +38,7 @@ export class UserService {
 
   public getAllUsers()
   {
-    return this.webClient.get<User[]>('/getallusers');
+    return this.webClient.get<User[]>('getallusers');
   }
 
   public getTreadingcourse(url : string,points : number){
@@ -189,6 +188,10 @@ export class UserService {
 
   getcoursesimilartoname(name : string){
     return this.webClient.get<Course[]>("getcoursesbyname/"+name)
+  }
+
+  createuser(user: any){
+    return this.webClient.post<any,any>("createnewusergooglelogin",user)
   }
 }
 

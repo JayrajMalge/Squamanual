@@ -74,7 +74,7 @@ export class EnrollCourseComponent implements OnInit{
               this.userservice.getuserfromemail(email).subscribe(
               (response)=>{
                  this.user = response
-                 this.userservice.getreviewsbycourseanduser(this.courseId,this.user.userid).subscribe(
+                 this.userservice.getreviewsbycourseanduser(this.courseId,this.user.userid || 0).subscribe(
                   (response)=>{
                      this.reviews = response
                      console.log(this.reviews)

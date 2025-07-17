@@ -1,7 +1,6 @@
 export class User {
-    userid=0;
+    userid:number|null=null;
     username='';
-    passwordhashsalted='';
     active=0;
     role='';
     name='';

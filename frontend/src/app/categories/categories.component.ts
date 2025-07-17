@@ -5,8 +5,6 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-import { response } from 'express';
-import { error } from 'console';
 import { Course ,topic,Concept } from '../entities';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { CategoryCourseComponent } from "../category-course/category-course.component";
@@ -27,16 +25,20 @@ export class CategoriesComponent implements OnInit{
   imgid : string = ''
   imgurl : SafeResourceUrl = ''
 
-   ngOnInit(): void {
-     const category = Number(this.router.snapshot.paramMap.get("categoryid"))
-     console.log(category)
-     this.userservice.getcategoriescoursesfromcategory(category).subscribe(
-      (response)=>{
-        this.courses = response
-        console.log(this.courses)
-      },(error)=>{
-        console.log(error)
-      }
-     )
-   } 
+  ngOnInit(): void {
+    this.router.params.subscribe(() => { // <-- Note: using .params instead of .paramMap
+      this.loadCourses();
+    });
+  }
+
+  loadCourses(): void {
+    const category = Number(this.router.snapshot.paramMap.get("categoryid"));
+      this.userservice.getcategoriescoursesfromcategory(category).subscribe(
+        (response) => {
+          this.courses = response;
+        },
+        (error) => {}
+      );
+  }
+
 }

@@ -24,7 +24,7 @@ export class WishlistComponent implements OnInit{
       const email = window.localStorage.getItem("elearning")??''
       this.userservice.getuserfromemail(email).subscribe(
         (response)=>{
-            this.userservice.getwishlistedcourse("wishlistedcoursefromuserid",response.userid).subscribe(
+            this.userservice.getwishlistedcourse("wishlistedcoursefromuserid",response.userid || 0).subscribe(
               (response)=>{
                 this.wishlistedcourses = response;
                 console.log(this.wishlistedcourses)

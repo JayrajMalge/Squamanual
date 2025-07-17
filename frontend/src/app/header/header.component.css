@@ -73,10 +73,16 @@ nav{
 
 #sign_in{
     padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    font-size: 19px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #F7F7F7;
 }
 #sign_in:hover {
-    
-    background-color: white;
+    cursor: pointer;
 }
 
 .Categories:hover .dropdown , .dropdown ul li a{

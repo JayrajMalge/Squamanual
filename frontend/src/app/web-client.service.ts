@@ -24,7 +24,6 @@ export class WebClientService {
   
   public post<T,R>(url:string, data:T)
   {
-    console.log(data)
     return this.http.post<R>(environment.API_ENDPOINT+url,data,{headers:{TOKEN:this.TOKEN}});
   }
 

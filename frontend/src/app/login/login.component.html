@@ -1,56 +1,26 @@
-<app-header></app-header>
-<div class="main">
-    <div class="content">
-        <h2>Welcome Our Elearning Platform</h2>
-        <p>Where learning meets innovation! Log in to access your courses, track your progress, and unlock new opportunities. Whether you're here to upskill, explore new topics, or advance your career, we’re here to support your journey. Enjoy interactive lessons, expert guidance, and a seamless learning experience. Stay motivated, achieve your goals, and make every step count toward success!</p>
-    </div>
-    <div class="login">
-        <div class="container" *ngIf="!forgetpass && !succesotp && !newdetail && !registerstatus">
-             <input type="text" [(ngModel)]="username" placeholder="Email" required />
-             <input type="password" [(ngModel)]="password" placeholder="Password" required/>
-             <a (click)="userlogin()" id="siginin">Sign In</a>
-             <a id="password" (click)="forgetpassword()">forget password</a>
-             <a id="siginin" (click)="registerform()">Register</a>
-             <div id="g_id_onload"
-                data-client_id="405862266846-jvm2kvjtps79hfmbmeoasviu65tho88i.apps.googleusercontent.com"
-                data-callback="handleCredentialResponse">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-         </div>
-         <div class="container" *ngIf="registerstatus">
-             <form (submit)="register()">
-                <input type="text"  placeholder="Email" [(ngModel)]="username" required [ngModelOptions]="{standalone: true}"/>
-                <input type="password" placeholder="Password"  [(ngModel)]="password"  required [ngModelOptions]="{standalone: true}"/>
-                <input type="password" placeholder="Confirm Password" [(ngModel)]="confirmpassword" required [ngModelOptions]="{standalone: true}">
-                <input type="submit" id="siginin" value="register">
-             </form>
-         </div>
-         <div class="container" *ngIf="forgetpass">
-            <input type="text" [(ngModel)]="username" placeholder="Email" required>
-            <a id="siginin"  *ngIf="otpsendstatus" (click)="sendotp()">Get OTP</a>
-            <div class="spinner" [hidden]="otpsendstatus"></div>
-         </div>
-         <div class="container" *ngIf="succesotp">
-            <input type="number" placeholder="Enter OTP" [(ngModel)]="otp">
-            <a id="siginin" (click)="verifyotp()">Verify</a>
-         </div>
-         <div class="container" *ngIf="newdetail">
-            <input type="text" [(ngModel)]="passwordhashed" placeholder="Enter new Password">
-            <a (click)="updateuser()" id="siginin">Set Password</a>
-         </div>
-     </div>
-</div>
-<app-footer></app-footer>
 
-<app-error-box
-[conetnt]="errormessage"
-[isOpen]="isDialogOpen" 
-(confirm)="handleConfirm()" 
-(close)="handleClose()"></app-error-box>
+
+<div class="dialog-overlay" *ngIf="isOpen">
+    <div class="dialog-box">
+      <div class="dialog-header">
+        <h3>Login</h3>
+        <button class="close-btn" (click)="closeDialog()">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div class="main">
+          <div id="g_id_onload"
+          data-client_id="405862266846-jvm2kvjtps79hfmbmeoasviu65tho88i.apps.googleusercontent.com"
+          data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left">
+      </div>
+        </div>
+      </div>
+    </div>
+</div>

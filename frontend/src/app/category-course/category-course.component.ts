@@ -31,7 +31,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class CategoryCourseComponent implements OnInit{
      @Input() course : Course = new Course()
-
      topics : topic[] = []
      concepts : Concept[] = []
      imgid : string = ''
